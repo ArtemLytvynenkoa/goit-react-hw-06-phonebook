@@ -1,16 +1,29 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import ListItem from "../ListItem";
 import s from "./ContactsList.module.css";
 
-function ContactsList({ contactsBook, onClickDelete }) {
+function ContactsList() {
+    const contacts = useSelector(state => state.contacts);
+    const filter = useSelector(state => state.filter);
+
+    const getVisibleContacts = () => {
+        const normalizedFilterText = filter.toLowerCase();
+    
+            return contacts.filter(({name}) =>
+            name.toLocaleLowerCase().includes(normalizedFilterText));
+    };
+
+    const visibleContacts = getVisibleContacts();
+
     return (
         <ul className={s.list}>
-            {contactsBook.map(({ id, name, number }) => (
+            {visibleContacts.map(({ id, name, number }) => (
                 <ListItem
                     key={id}
                     name={name}
                     number={number}
-                    deleteContact={() => onClickDelete(id)}
+                    id={id}
                 />
             ))}
             
