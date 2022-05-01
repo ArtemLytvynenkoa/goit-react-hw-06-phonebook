@@ -9,8 +9,6 @@ function ContactForm() {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
-    console.log(contacts)
-
     const checkSameName = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
     const message = `${name} is already in contacts!`;
 
