@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from 'react-redux'
-import {filterContacts} from '../../redux/contactsFilter/slice'
+import {filterContacts, getFilter} from '../../redux/contactsFilter/slice'
 import s from "./ContactsFilter.module.css";
 
 function ContactsFilter() {
-    const filter = useSelector(state => state.filter);
+    const filter = useSelector(getFilter);
     const dispatch = useDispatch();
 
     const changeFilter = e => {

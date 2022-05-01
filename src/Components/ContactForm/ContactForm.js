@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from "redux/contactsList/slice";
+import { addContact, getContacts } from "redux/contactsList/slice";
 import s from "./ContactForm.module.css";
 
 function ContactForm() {
     const dispatch = useDispatch();
-    const contacts = useSelector(state => state.contacts)
+    const contacts = useSelector(getContacts)
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+
+    console.log(contacts)
 
     const checkSameName = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
     const message = `${name} is already in contacts!`;
