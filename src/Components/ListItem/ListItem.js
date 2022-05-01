@@ -6,11 +6,6 @@ import s from "./ListItem.module.css";
 function ListItem({ name, number, id }) {
     const dispatch = useDispatch();
     
-
-    const h = () => {
-        console.log(dispatch(removeContact(id)))
-        dispatch(removeContact(id))
-    }
     return (
         <li className={s.item} >
             <p>{name}</p>
@@ -18,7 +13,7 @@ function ListItem({ name, number, id }) {
             <button
                 className={s.button}
                 type="button"
-                onClick={h}
+                onClick={() => dispatch(removeContact(id))}
             >
                 Delete
             </button>
